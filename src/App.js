@@ -1,10 +1,14 @@
+import { Box } from '@chakra-ui/react';
 import './App.css';
+import { Navbar } from './components/Navbar';
+import { Home } from './pages/Home';
 
 function App() {
   return (
-    <div className="App">
-      Vaidam
-    </div>
+    <Box>
+      <Navbar />
+      <Home />
+    </Box>
   );
 }
 
