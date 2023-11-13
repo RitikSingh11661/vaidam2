@@ -1,6 +1,7 @@
-import { Box, Button, Flex, Menu, MenuButton, MenuItem, MenuList, Text , Input, Image} from '@chakra-ui/react'
+import { Box, Button, Flex, Menu, MenuButton, MenuItem, MenuList, Text, Input, Image } from '@chakra-ui/react'
 import { ChevronDownIcon } from '@chakra-ui/icons'
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 export const Navbar = () => {
   return (
@@ -26,7 +27,9 @@ export const Navbar = () => {
       </Flex>
       <Flex height={'10vh'} bg={'#eee'} justify={'space-between'} alignItems={'center'} p={'0 5vw'}>
         <Flex color={'black'} align={'center'}>
-          <Text fontWeight={'medium'} mr='1vw'>Home</Text>
+          <Text fontWeight={'medium'} mr='1vw' >
+            <Link to='/'>Home</Link>
+          </Text>
           <Menu>
             <MenuButton bg={'transparent'} as={Button} rightIcon={<ChevronDownIcon />}>
               Hopitals
@@ -64,8 +67,12 @@ export const Navbar = () => {
               <MenuItem>Medical Visa</MenuItem>
             </MenuList>
           </Menu>
-          <Text fontWeight={'medium'} mr='2vw'>Patient Stories</Text>
-          <Text fontWeight={'medium'} mr='2vw'>FREE Consult</Text>
+          <Text fontWeight={'medium'} mr='2vw'>
+            <Link to='/patientstories' mr='2vw'>Patient Stories</Link>
+          </Text>
+          <Text fontWeight={'medium'} mr='2vw'>
+            <Link to='/consultforfree' mr='2vw' p='2'>FREE Consult</Link>
+          </Text>
         </Flex>
         <Flex bg='white'>
           <Input width={'23vw'} placeholder='Search by disease, procedure, doctor or hospital' />
