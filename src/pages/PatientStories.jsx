@@ -1,33 +1,47 @@
-import { Box, Flex, Text, Image, Stack, Select } from '@chakra-ui/react'
 import React from 'react'
+import { Box, Flex, Text, Image, Stack, Select} from '@chakra-ui/react'
 import { Contact } from '../components/Contact'
 
 export const PatientStories = () => {
   const patientTestimonials = [['Anthony From Nigeria Successfully Treated with a Right Hemicolectomy and Chemotherapy in India', '18 Oct 2023', 'https://www.vaidam.com/sites/default/files/anthony-min.jpg'], ['Kabir Zubairu From Nigeria Receives Chemotherapy in India', '18 Oct 2023', 'https://www.vaidam.com/sites/default/files/kabir-min.jpg']];
-
   const cancer = [['Transarterial Chemoembolization (TACE) in Germany: Understanding the Procedure', '16 Aug 2023', 'https://www.vaidam.com/sites/default/files/tace-in-germany-list-image.png'], ['Dendritic Cell Therapy in Germany', '11 Aug 2023', 'https://www.vaidam.com/sites/default/files/dendritic-cell-therapy-germany-list-image.png']]
 
-  const categories = {patientTestimonials,cancer};
+  const categories = { patientTestimonials, cancer };
+  const allCategories = [...patientTestimonials, ...cancer];
+  const [activeCategory, setactiveCategory] = React.useState();
 
-  const [activeCategory, setactiveCategory] = React.useState('cancer');
-
-  const renderCategories = () => {
+  const RenderCategories = () => {
     return (
       <Stack mt={'4vh'} gap={'5vw'}>
-        <Flex gap={'1vw'} h='30%' w={'full'}>
-          {/* {activeCategory && categories[activeCategory].map(category)=>{
-            return 
-          }} */}
-          <Stack>
-            <Text fontSize={'xl'} fontWeight={'semibold'} lineHeight={'4vh'}>Uzbekistan Patient with Throat Cancer Successfully Treated in India</Text>
-            <Flex fontSize={'xs'} gap={'3vw'}>
-              <Text>Category: Patient Testimonials</Text>
-              <Text>Created Date: 08 Nov 2023</Text>
+        {activeCategory ? categories[activeCategory].map((cat, index) => {
+          return (
+            <Flex gap={'1vw'} h='30%' w={'full'}>
+              <Stack w='70%' key={index + cat}>
+                <Text fontSize={'xl'} fontWeight={'semibold'} lineHeight={'4vh'}>{cat[0]}</Text>
+                <Flex fontSize={'xs'} gap={'3vw'}>
+                  <Text>Category: {activeCategory}</Text>
+                  <Text>Created Date: {cat[1]}</Text>
+                </Flex>
+              </Stack>
+              <Image boxShadow={'md'} w={'27%'} h='fit-content' src={cat[2]} alt={activeCategory} />
             </Flex>
-          </Stack>
-          <Image boxShadow={'md'} w={'27%'} h='fit-content' src='https://www.vaidam.com/sites/default/files/patient_testimonial_-_olumboy_umanyozov-min.jpg' alt='patient story' />
-        </Flex>
-      </Stack>
+          )
+        }) : allCategories.map((cat, index) => {
+          return (
+            <Flex gap={'1vw'} h='30%' w={'full'}>
+              <Stack w='70%' key={index + cat}>
+                <Text fontSize={'xl'} fontWeight={'semibold'} lineHeight={'4vh'}>{cat[0]}</Text>
+                <Flex fontSize={'xs'} gap={'3vw'}>
+                  <Text>Category: {activeCategory}</Text>
+                  <Text>Created Date: {cat[1]}</Text>
+                </Flex>
+              </Stack>
+              <Image boxShadow={'md'} w={'27%'} h='fit-content' src={cat[2]} alt={activeCategory} />
+            </Flex>
+          )
+        })
+        }
+      </Stack >
     )
   }
 
@@ -35,17 +49,21 @@ export const PatientStories = () => {
     <Box w={'90%'} m='3vh auto'>
       <Flex justify={'space-between'} borderBottom={'1px solid grey'}>
         <Flex w={'50%'} gap={'2vw'}>
-          <Stack >
+          <Stack w='full'>
             <Image boxShadow={'md'} src='https://www.vaidam.com/sites/default/files/camila_da_silva_baiao_mateus_1.jpg' alt='patient story' />
-            <Text fontSize={'xl'} fontWeight={'semibold'} lineHeight={'4vh'}>An Angolan couple had a joyful journey to India for a successful IVF treatment</Text>
+            <Box h='22%'>
+              <Text fontSize={'xl'} fontWeight={'semibold'} lineHeight={'4vh'}>A Patient from Uganda had her Breast Cancer Reviewed in India</Text>
+            </Box>
             <Box w={'60%'} fontSize={'xs'}>
               <Text>Category: Patient Testimonials</Text>
-              <Text>Created Date: 08 Nov 2023</Text>
+              <Text>Created Date: 06 Nov 2023</Text>
             </Box>
           </Stack>
-          <Stack>
-            <Image boxShadow={'md'} src='https://www.vaidam.com/sites/default/files/camila_da_silva_baiao_mateus_1.jpg' alt='patient story' />
-            <Text fontSize={'xl'} fontWeight={'semibold'} lineHeight={'4vh'}>An Angolan couple had a joyful journey to India for a successful IVF treatment</Text>
+          <Stack w='full'>
+            <Image boxShadow={'md'} src='https://www.vaidam.com/sites/default/files/bamusiima_winfred_sarah_testimonial.jpg' alt='patient story' />
+            <Box h='22%'>
+              <Text fontSize={'xl'} fontWeight={'semibold'} lineHeight={'4vh'}>An Angolan couple had a joyful journey to India for a successful IVF treatment</Text>
+            </Box>
             <Box w={'60%'} fontSize={'xs'}>
               <Text>Category: Patient Testimonials</Text>
               <Text>Created Date: 08 Nov 2023</Text>
@@ -55,7 +73,7 @@ export const PatientStories = () => {
         <Stack w={'45%'} h={'60vh'}>
           <Flex gap={'1vw'} h='30%' align={'center'}>
             <Image boxShadow={'md'} w={'50%'} h={'90%'} src='https://www.vaidam.com/sites/default/files/patient_testimonial_-_olumboy_umanyozov-min.jpg' alt='patient story' />
-            <Stack>
+            <Stack w='99%'>
               <Text fontSize={'xl'} fontWeight={'semibold'} lineHeight={'4vh'}>Uzbekistan Patient with Throat Cancer Successfully Treated in India</Text>
               <Box w={'60%'} fontSize={'xs'}>
                 <Text>Category: Patient Testimonials</Text>
@@ -64,22 +82,22 @@ export const PatientStories = () => {
             </Stack>
           </Flex>
           <Flex gap={'1vw'} h='30%' align={'center'}>
-            <Image boxShadow={'md'} w={'50%'} h={'90%'} src='https://www.vaidam.com/sites/default/files/patient_testimonial_-_olumboy_umanyozov-min.jpg' alt='patient story' />
-            <Stack>
-              <Text fontSize={'xl'} fontWeight={'semibold'} lineHeight={'4vh'}>Uzbekistan Patient with Throat Cancer Successfully Treated in India</Text>
+            <Image boxShadow={'md'} w={'50%'} h={'90%'} src='https://www.vaidam.com/sites/default/files/shihab-min.jpg' alt='patient story' />
+            <Stack w='99%'>
+              <Text fontSize={'xl'} fontWeight={'semibold'} lineHeight={'4vh'}>Bangladesh Patient Receives Specialized PRP Therapy in India</Text>
               <Box w={'60%'} fontSize={'xs'}>
                 <Text>Category: Patient Testimonials</Text>
-                <Text>Created Date: 08 Nov 2023</Text>
+                <Text>Created Date: 27 Oct 2023</Text>
               </Box>
             </Stack>
           </Flex>
           <Flex gap={'1vw'} h='30%' align={'center'}>
-            <Image boxShadow={'md'} w={'50%'} h={'90%'} src='https://www.vaidam.com/sites/default/files/patient_testimonial_-_olumboy_umanyozov-min.jpg' alt='patient story' />
-            <Stack>
-              <Text fontSize={'xl'} fontWeight={'semibold'} lineHeight={'4vh'}>Uzbekistan Patient with Throat Cancer Successfully Treated in India</Text>
+            <Image boxShadow={'md'} w={'50%'} h={'90%'} src='https://www.vaidam.com/sites/default/files/adil-min.jpg' alt='patient story' />
+            <Stack w='99%'>
+              <Text fontSize={'xl'} fontWeight={'semibold'} lineHeight={'4vh'}>Baby From Ivory Coast Successfully Treated with Occupational Therapy in India</Text>
               <Box w={'60%'} fontSize={'xs'}>
                 <Text>Category: Patient Testimonials</Text>
-                <Text>Created Date: 08 Nov 2023</Text>
+                <Text>Created Date: 27 Nov 2023</Text>
               </Box>
             </Stack>
           </Flex>
@@ -95,28 +113,7 @@ export const PatientStories = () => {
               <option value={'cancer'}>Cancer</option>
             </Select>
           </Flex>
-          <Stack mt={'4vh'} gap={'5vw'}>
-            <Flex gap={'1vw'} h='30%' w={'full'}>
-              <Stack>
-                <Text fontSize={'xl'} fontWeight={'semibold'} lineHeight={'4vh'}>Uzbekistan Patient with Throat Cancer Successfully Treated in India</Text>
-                <Flex fontSize={'xs'} gap={'3vw'}>
-                  <Text>Category: Patient Testimonials</Text>
-                  <Text>Created Date: 08 Nov 2023</Text>
-                </Flex>
-              </Stack>
-              <Image boxShadow={'md'} w={'27%'} h='fit-content' src='https://www.vaidam.com/sites/default/files/patient_testimonial_-_olumboy_umanyozov-min.jpg' alt='patient story' />
-            </Flex>
-            <Flex gap={'1vw'} h='30%' w={'full'}>
-              <Stack>
-                <Text fontSize={'xl'} fontWeight={'semibold'} lineHeight={'4vh'}>Uzbekistan Patient with Throat Cancer Successfully Treated in India</Text>
-                <Flex fontSize={'xs'} gap={'3vw'}>
-                  <Text>Category: Patient Testimonials</Text>
-                  <Text>Created Date: 08 Nov 2023</Text>
-                </Flex>
-              </Stack>
-              <Image boxShadow={'md'} w={'27%'} h='fit-content' src='https://www.vaidam.com/sites/default/files/patient_testimonial_-_olumboy_umanyozov-min.jpg' alt='patient story' />
-            </Flex>
-          </Stack>
+          <RenderCategories />
         </Stack>
         <Contact />
       </Flex>
