@@ -9,7 +9,7 @@ function App() {
     <Box>
       <Navbar/>
       <AllRoutes/>
-      <Footer />
+      <Footer/>
     </Box>
   );
 }

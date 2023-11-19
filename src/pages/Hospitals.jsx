@@ -1,88 +1,38 @@
 import React from 'react'
 import { Box, Stack, Text, Button, Image, Heading, VStack, Flex, UnorderedList, ListItem } from '@chakra-ui/react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
+import { Filter } from '../components/Filter';
+
 export const Hospitals = () => {
-  const [hospitals, setHospitals] = React.useState([{ id: 1, name: 'Jeeves', city: 'Delhi', country: 'India' }]);
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const selectedCountry = searchParams.get("country");
+  const selectedCity = searchParams.get('city');
 
   // React.useEffect(() => {
-  //   fetch("https://api.example.com/hospitals")
-  //     .then((response) => response.json())
-  //     .then((data) => setHospitals(data));
-  // }, []);
-
-  const filterHospitalsByCountry = (country) => {
-    const filteredHospitals = hospitals.filter((hospital) => hospital.country === country);
-    setHospitals(filteredHospitals);
-  };
-
-  const filterHospitalsByCity = (city) => {
-    const filteredHospitals = hospitals.filter((hospital) => hospital.city === city);
-    setHospitals(filteredHospitals);
-  };
+  // const getHospitalsParams = {
+  //   params: {
+  //     sort: searchParams.get("order") && "price",
+  //     orderBy: searchParams.get("order") && searchParams.get("order"),
+  //     search: searchParams.get("search") && searchParams.get("search")
+  //   }
+  // };
+  // dispatch(getProducts(getHospitalsParams));
+  // }, [location.search]);
 
   return (
     <Box w={'90%'} m='3vh auto'>
       <Flex justify={'center'}>
-        <Stack w={'20%'} bg='#fafafa' p='0 0.5vw' gap={'1vw'}>
-          <Box>
-            <Text fontSize={'2xl'} pb={'2vh'} fontWeight={'semibold'}>By Country</Text>
-            <Stack color={'#005897'} p='1vw' gap={'1vw'} maxH={'33vh'} overflowY={'auto'}>
-              <Text>India(200)</Text>
-              <Text>Turkey(200)</Text>
-              <Text>United Arab Emirates(200)</Text>
-              <Text>Thailand(200)</Text>
-              <Text>Germany(200)</Text>
-              <Text>South Africa(200)</Text>
-              <Text>Tunisia(200)</Text>
-            </Stack>
-          </Box>
-          <Box >
-            <Text fontSize={'2xl'} pb={'2vh'} fontWeight={'semibold'}>By City</Text>
-            <Stack color={'#005897'} p='1vw' gap={'1vw'} maxH={'37vh'} overflowY={'auto'}>
-              <Text>New Delhi(200)</Text>
-              <Text>Hyderabad(200)</Text>
-              <Text>Bangalore Arab Emirates(200)</Text>
-              <Text>Chennai(200)</Text>
-              <Text>Mumbai(200)</Text>
-              <Text>Gurgaon Africa(200)</Text>
-              <Text>Tunisia(200)</Text>
-            </Stack>
-          </Box>
-          <Box >
-            <Text fontSize={'2xl'} pb={'2vh'} fontWeight={'semibold'}>By Department</Text>
-            <Stack color={'#005897'} p='1vw' gap={'1vw'} maxH={'35vh'} overflowY={'auto'}>
-              <Text>CARDIOLOGY AND CARDIAC SURGERY(200)</Text>
-              <Text>COSMETIC AND PLASTIC(200)</Text>
-              <Text>DENTALTREATMENT(200)</Text>
-              <Text>DEMATOLOGY(200)</Text>
-              <Text>ENT SURGERY(200)</Text>
-              <Text>GASTROENTEROLOGY(200)</Text>
-              <Text>GENERAL SURGERY(200)</Text>
-            </Stack>
-          </Box>
-        </Stack>
+        <Filter selectedCountry={selectedCountry} selectedCity={selectedCity} />
         <Stack w={'80%'} p={'1vw'}>
-          <Heading textAlign={'center'}>Best Hospitals in India</Heading>
-          <Box>
-            <Text fontSize={'2xl'} pb={'2vh'} fontWeight={'semibold'}>Hospitals By City</Text>
-            <Flex color={'#005897'} p='1vw' gap={'1vw'}>
-              <Text>New Delhi(200)</Text>
-              <Text>Hyderabad(200)</Text>
-              <Text>Bangalore(200)</Text>
-              <Text>Chennai(200)</Text>
-              <Text>Mumbai(200)</Text>
-              <Text>Gurgaon Africa(200)</Text>
-              <Text>Tunisia(200)</Text>
-            </Flex>
-          </Box>
+          <Heading textAlign={'center'}>Best Hospitals in {selectedCountry}</Heading>
           <Stack gap={'2vh'}>
             <Text fontSize={'2xl'} pb={'2vh'} fontWeight={'semibold'}>2 records found.</Text>
             <Flex>
               <Image w={'30%'} h={'25%'} src='https://www.vaidam.com/sites/default/files/Apollo%20Hospital%20Delhi%20Lobby_0.jpg' alt='hospital' />
               <Stack p='0 1vw' gap={'0.5vw'}>
                 <Flex gap={'1.5vw'} h={'9%'}>
-                  <Text fontSize={'2xl'} color={'blue'}>Indraprastha Apollo Hospital, New Delhi</Text>
+                  <Text fontSize={'2xl'} fontWeight={'semibold'} color={'#005897'}>Indraprastha Apollo Hospital, New Delhi</Text>
                   <Flex gap={'0.5vw'}>
                     <Image w={'full'} h={'full'} src='https://www.vaidam.com/sites/default/files/accreditations_83.png' alt='badge' />
                     <Image w={'full'} h={'full'} src='https://www.vaidam.com/sites/default/files/accreditations_85.png' alt='badge' />
@@ -101,10 +51,12 @@ export const Hospitals = () => {
                 <Text textAlign={'right'} textDecor={'underline'} color={'blue'} mb={'1vh'}>More Details</Text>
                 <Flex justify={'space-between'}>
                   <Text color='blue'>View Details</Text>
-                  <VStack>
-                    <Button bg={'red'} color={'white'}>Book Appointment</Button>
-                    <Text>Get response within 24hrs</Text>
-                  </VStack>
+                  <Box>
+                    <Link to='/consultforfree' state={{ name: 'Indraprastha Apollo Hospital, New Delhi', image: 'https://www.vaidam.com/sites/default/files/Apollo%20Hospital%20Delhi%20Lobby_0.jpg' }}>
+                      <Button bg={'red'} color={'white'}>Book Appointment</Button>
+                      <Text>Get response within 24hrs</Text>
+                    </Link>
+                  </Box>
                 </Flex>
               </Stack>
             </Flex>
@@ -119,7 +71,7 @@ export const Hospitals = () => {
               <Image w={'30%'} h={'25%'} src='https://www.vaidam.com/sites/default/files/medanta_the_medicity_gurgaon_list_view_image-min.jpg' alt='hospital' />
               <Stack p='0 1vw' gap={'0.5vw'}>
                 <Flex gap={'1.5vw'} h={'9%'}>
-                  <Text fontSize={'2xl'} color={'blue'}>Medanta - The Medicity, Gurgaon</Text>
+                  <Text fontSize={'2xl'} fontWeight={'semibold'} color={'#005897'}>Medanta - The Medicity, Gurgaon</Text>
                   <Flex gap={'0.5vw'}>
                     <Image w={'full'} h={'full'} src='https://www.vaidam.com/sites/default/files/accreditations_83.png' alt='badge' />
                     <Image w={'full'} h={'full'} src='https://www.vaidam.com/sites/default/files/accreditations_85.png' alt='badge' />
@@ -138,10 +90,12 @@ export const Hospitals = () => {
                 <Text textAlign={'right'} textDecor={'underline'} color={'blue'} mb={'1vh'}>More Details</Text>
                 <Flex justify={'space-between'}>
                   <Text color='blue'>View Details</Text>
-                  <VStack>
-                    <Button bg={'red'} color={'white'}>Book Appointment</Button>
-                    <Text>Get response within 24hrs</Text>
-                  </VStack>
+                  <Box>
+                    <Link to='/consultforfree' state={{ name: 'Medanta - The Medicity, Gurgaon', image: 'https://www.vaidam.com/sites/default/files/medanta_the_medicity_gurgaon_list_view_image-min.jpg',type:'Hospital'}}>
+                      <Button bg={'red'} color={'white'}>Book Appointment</Button>
+                      <Text>Get response within 24hrs</Text>
+                    </Link>
+                  </Box>
                 </Flex>
               </Stack>
             </Flex>

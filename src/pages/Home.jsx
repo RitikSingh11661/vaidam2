@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Button, Flex, Heading, Image,Select, Text,VStack } from '@chakra-ui/react'
+import { Box, Button, Flex, Heading, Image, Select, Text, VStack } from '@chakra-ui/react'
 import AliceCarousel from 'react-alice-carousel';
 import 'react-alice-carousel/lib/alice-carousel.css';
 import './Home.css';
@@ -72,7 +72,7 @@ export const Home = () => {
           </VStack>
           <Image src='https://www.vaidam.com/assets/v2/images/group-img-vaidam-home.png' />
         </VStack>
-        <Contact mt='7vh'/>
+        <Contact mt='7vh' />
       </Flex>
       <Box m={'5vh auto'} w={'55vw'}>
         <Text fontSize={'22px'} fontWeight={'semibold'} textAlign={'center'}>Trusted Doctors, Top Hospitals, Hassles Taken Care</Text>
@@ -217,6 +217,9 @@ export const Home = () => {
       </VStack>
       <VStack bg={'#f9f9f9'} p={'5vh 0'}>
         <Text fontSize={'xs'} w={'80vw'} textAlign={'center'} color={'grey'}>Note: Vaidam Health does not provide medical advice, diagnosis or treatment. The services and information offered on www.vaidam.com are intended solely for informational purposes and cannot replace the professional consultation or treatment by a physician. Vaidam Health discourages copying, cloning of its webpages and its content and it will follow the legal procedures to protect its intellectual property</Text>
+      </VStack>
+      <VStack pos={'fixed'} top={'70vh'} right={'-5px'} as={'a'} borderRadius={'lg'} href='https://wa.me/7217729644' target='blank' width={'4vw'} bg={'blue.500'}>
+        <Image  src='https://www.vaidam.com/assets/v2/images/svg/icons8-whatsapp.svg' alt='whatsApp'/>
       </VStack>
     </Box>
   )

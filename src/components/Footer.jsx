@@ -1,6 +1,7 @@
 'use client'
 import { Box, Container, Stack, SimpleGrid, Text, VisuallyHidden, chakra, useColorModeValue } from '@chakra-ui/react'
 import { FaTwitter, FaYoutube,FaFacebook, FaLinkedin } from 'react-icons/fa'
+import { Link } from 'react-router-dom'
 
 export const Footer = () => {
   // const ListHeader = (children => <Text fontWeight={'500'} fontSize={'lg'} mb={2}>{children}</Text>)
@@ -20,9 +21,9 @@ export const Footer = () => {
           <Stack align={'flex-start'}>
             {/* <ListHeader>Company</ListHeader> */}
             <Text fontWeight={'500'} fontSize={'lg'} mb={2}>Company</Text>
-            <Box as="a" href={'#'}>About Us</Box>
-            <Box as="a" href={'#'}>Careers</Box>
-            <Box as="a" href={'#'}>Contact Us</Box>
+            <Link to='/about-us' href={'/about-us'}>About Us</Link>
+            <Link to='/contact-us' >Contact Us</Link>
+            <Link to='/about-us' >Careers</Link>
           </Stack>
           <Stack align={'flex-start'}>
             <Text fontWeight={'500'} fontSize={'lg'} mb={2}>Support</Text>
