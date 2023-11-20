@@ -56,14 +56,14 @@ export const Navbar = () => {
       </Flex>
       <Flex height={'10vh'} bg={'#eee'} justify={'space-between'} alignItems={'center'} p={'0 5vw'}>
         <Flex w={'62%'} gap={'0.2vw'} color={'black'} align={'center'} >
-          <Box>
+          <Box _hover={{ borderBottom: '3px solid blue' }}>
             <Popover trigger={'hover'} placement={'bottom-start'}>
               <Box fontWeight={'medium'} mr='1vw' color='black' p={2} _hover={{ textDecoration: 'none', color: linkHoverColor }}>
                 <Link to='/'>Home</Link>
               </Box>
             </Popover>
           </Box>
-          <Box>
+          <Box _hover={{ borderBottom: '3px solid blue' }}>
             <Popover trigger={'hover'} placement={'bottom-start'}>
               <PopoverTrigger>
                 <Flex align={'center'} fontWeight={'medium'} color='black' _hover={{ textDecoration: 'none', color: linkHoverColor }}>
@@ -74,7 +74,7 @@ export const Navbar = () => {
               <Subnav to='/hospitals' data={hospitalsByCountries} />
             </Popover>
           </Box>
-          <Box>
+          <Box _hover={{ borderBottom: '3px solid blue' }}>
             <Popover trigger={'hover'} placement={'bottom-start'}>
               <PopoverTrigger>
                 <Flex align={'center'} fontWeight={'medium'} color='black' p={2} _hover={{ textDecoration: 'none', color: linkHoverColor }}>
@@ -85,7 +85,7 @@ export const Navbar = () => {
               <Subnav to='/doctors' data={doctorsByCountries} />
             </Popover>
           </Box>
-          <Box>
+          <Box _hover={{ borderBottom: '3px solid blue' }}>
             <Popover trigger={'hover'} placement={'bottom-start'}>
               <PopoverTrigger>
                 <Flex align={'center'} fontWeight={'medium'} color='black' p={2} _hover={{ textDecoration: 'none', color: linkHoverColor }}>
@@ -97,7 +97,7 @@ export const Navbar = () => {
                 <Stack>
                   <Box role={'group'} display={'block'} p={2} _hover={{ bg: useColorModeValue('pink.50', 'gray.900') }}>
                     <Stack direction={'row'} align={'center'}>
-                      <Box>
+                      <Box _hover={{ borderBottom: '3px solid blue' }}>
                         <Text transition={'all .3s ease'} _groupHover={{ color: 'pink.400' }} fontWeight={'medium'}>
                           Cardiology
                         </Text>
@@ -106,7 +106,7 @@ export const Navbar = () => {
                   </Box>
                   <Box role={'group'} display={'block'} p={2} _hover={{ bg: useColorModeValue('pink.50', 'gray.900') }}>
                     <Stack direction={'row'} align={'center'}>
-                      <Box>
+                      <Box _hover={{ borderBottom: '3px solid blue' }}>
                         <Text transition={'all .3s ease'} _groupHover={{ color: 'pink.400' }} fontWeight={'medium'}>
                           Cosmetic
                         </Text>
@@ -117,7 +117,7 @@ export const Navbar = () => {
               </PopoverContent>
             </Popover>
           </Box>
-          <Box>
+          <Box _hover={{ borderBottom: '3px solid blue' }}>
             <Popover trigger={'hover'} placement={'bottom-start'}>
               <PopoverTrigger>
                 <Flex align={'center'} fontWeight={'medium'} color='black' p={2} _hover={{ textDecoration: 'none', color: linkHoverColor }}>
@@ -128,14 +128,14 @@ export const Navbar = () => {
               <Subnav to='/knowledge' data={knowledgeNavs} />
             </Popover>
           </Box>
-          <Box>
+          <Box _hover={{ borderBottom: '3px solid blue' }}>
             <Popover trigger={'hover'} placement={'bottom-start'}>
               <Box fontWeight={'medium'} mr='1vw' color='black' p={2} _hover={{ textDecoration: 'none', color: linkHoverColor }}>
                 <Link to='/patientstories'>Patient Stories</Link>
               </Box>
             </Popover>
           </Box>
-          <Box>
+          <Box _hover={{ borderBottom: '3px solid blue' }}>
             <Popover trigger={'hover'} placement={'bottom-start'}>
               <Box fontWeight={'medium'} mr='1vw' color='black' p={2} _hover={{ textDecoration: 'none', color: linkHoverColor }}>
                 <Link to='/consultforfree'>Free Consult</Link>
